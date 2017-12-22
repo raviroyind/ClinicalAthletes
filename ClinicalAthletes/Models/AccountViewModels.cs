@@ -79,6 +79,9 @@ namespace ClinicalAthletes.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string Location { get; set; }
+        public bool ChargeUser { get; set; }
     }
 
     public class ResetPasswordViewModel

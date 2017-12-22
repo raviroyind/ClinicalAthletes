@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/material-kit.css" rel="stylesheet" />
+     
+</head>
+<body class="login-page" data-gr-c-s-loaded="true">
+    <nav class="navbar navbar-primary navbar-absolute">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <div class="collpase navbar-collapse">
+                 
+            </div>
+        </div>
+    </nav>
+    <div class="page-header" style="background-size: cover; background-position: top center;">
+        @RenderBody()
+        <footer class="footer">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    ©<script>document.write(new Date().getFullYear())</script>,<a href="#" target="_blank">Clinical Athletes</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/anon/material.min.js"></script>
+    <script src="~/Scripts/js/anon/bootstrap-selectpicker.js"></script>
+    <script src="~/Scripts/js/anon/material-kit.js"></script>
+    <script src="~/Scripts/js/anon/bootstrap-tagsinput.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

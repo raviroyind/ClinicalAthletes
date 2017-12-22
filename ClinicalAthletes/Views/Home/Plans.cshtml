@@ -1,0 +1,126 @@
+﻿@model List<ClinicalAthletes.Entities.ExercisePlan>
+@using ClinicalAthletes.Entities;
+@{
+    ViewBag.Title = "Plans";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="card">
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Avialiable Plans</h4>
+    </div>
+    <div class="card-content">
+        @foreach (ExercisePlan plan in Model)
+    {
+        <div class="card">
+            <div class="card-content">
+                <p class="category">
+                    <h4>
+                        <strong class="text-gray">@plan.PlanName</strong>
+                    </h4>
+
+                    <hr />
+                    <h5>Exercises</h5>
+                </p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            @foreach (ExerciseType type in plan.ExerciseTypes)
+                        {
+                            string headerId = "heading" + type.Id.ToString();
+                            string collaspId = "collasp" + type.Id.ToString();
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="@headerId">
+                                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#@collaspId" aria-expanded="true" aria-controls="@collaspId">
+                                        <h4 class="panel-title">
+                                            @type.Name
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="@collaspId" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@headerId" aria-expanded="true" style="">
+                                    <div class="panel-body">
+                                        <ul>
+                                            @foreach (Exercise exercise in type.Exercises)
+                                        {
+                                            <li>@exercise.Name</li>
+                                    }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+}
+
+        @foreach (ExercisePlan plan in Model)
+    {
+        <div class="card">
+            <div class="card-content">
+                <p class="category">
+                    <h4>
+                        <strong class="text-gray">@plan.PlanName</strong>
+                    </h4>
+                    <div class="togglebutton">
+                        <label>
+                            @if (plan.IsActive)
+    {
+                        <input type="checkbox" checked="checked"><span class="toggle"></span>
+}
+else
+{
+                        <input type="checkbox" checked=""><span class="toggle"></span>
+}
+                        </label>
+                    </div>
+                    <hr />
+                    <h5>Exercises</h5>
+                </p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            @foreach (ExerciseType type in plan.ExerciseTypes)
+                        {
+                            string headerId = "heading" + type.Id.ToString();
+                            string collaspId = "collasp" + type.Id.ToString();
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="@headerId">
+                                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#@collaspId" aria-expanded="true" aria-controls="@collaspId">
+                                        <h4 class="panel-title">
+                                            @type.Name
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="@collaspId" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@headerId" aria-expanded="true" style="">
+                                    <div class="panel-body">
+                                        <ul>
+                                            @foreach (Exercise exercise in type.Exercises)
+                                        {
+                                            <li>@exercise.Name</li>
+                                    }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+}
+
+    </div>
+</div>
+
+@Html.Partial("_KendoUIRef")
+
+
