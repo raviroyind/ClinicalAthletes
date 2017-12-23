@@ -203,11 +203,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\DefaultController.cs" />
     <Compile Include="Controllers\API\ExcelImportController.cs" />
     <Compile Include="Controllers\API\ExerciseAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +224,7 @@
     <Content Include="Content\demo.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\material-dashboard.css" />
     <Content Include="Content\material-kit.css" />
     <Content Include="favicon.ico" />
@@ -231,6 +232,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\userFunctions.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\FontAwesome.otf" />
@@ -296,8 +298,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
-    <Content Include="Views\Home\About2.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_KendoUIRef.cshtml" />
     <Content Include="Views\Shared\_AnonLayout.cshtml" />
     <Content Include="Scripts\js\anon\bootstrap-selectpicker.js" />
@@ -307,6 +308,10 @@
     <Content Include="Scripts\js\anon\nouislider.min.js" />
     <Content Include="Scripts\js\anon\material.min.js" />
     <Content Include="Views\Home\Plans.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_userDropdown.cshtml" />
+    <Content Include="Views\User\Dahsboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

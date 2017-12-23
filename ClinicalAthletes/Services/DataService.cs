@@ -27,15 +27,13 @@ namespace ClinicalAthelete.Services
                throw ex;
             }
         }
-
+         
         internal static List<ExercisePlan> GetExercisePlans()
         {
             try
             {
 
-                dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes();
-                
- 
+                    dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes();
                     dbContext.Configuration.LazyLoadingEnabled = true;
                     var result = dbContext.ExercisePlans.ToList();
                     return result;
@@ -44,6 +42,16 @@ namespace ClinicalAthelete.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        internal static List<ExerciseType> GetExerciseTypesForCurrentPlan(int exercisePlanId)
+        {
+            using(dbContext =new ClinicalAthletes.Core.Data.ClinicalAthletes())
+            {
+                dbContext.Configuration.LazyLoadingEnabled = false;
+                var result = dbContext.ExerciseTypes.Where(e => e.ExercisePlanId.Equals(exercisePlanId)).ToList();
+                return result;
             }
         }
 

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<input type="hidden" id="ExercisePlanId" value="9" />
+<div class="card">
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Select exercise Plan</h4>
+        <p class="category">
+        </p>
+    </div>
+    <div class="card-content">
+        @for (int i = 0; i <= 5 - 1; i++)
+        {
+            @Html.Partial("_userDropdown", i)
+        }
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
+            <button class="btn btn-lg btn-primary" style="margin-left:10px;">Next</button>
+        </div>
+    </div>
+</div>
+<script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css" />

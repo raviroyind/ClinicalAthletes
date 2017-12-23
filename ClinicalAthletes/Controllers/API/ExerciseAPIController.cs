@@ -20,5 +20,10 @@ namespace ClinicalAthletes.Controllers.API
             return DataService.GetExercisePlans();
         }
 
+        [HttpGet, Route("getExerciseTypes")]
+        public List<ExerciseType> GetExerciseTypesForCurrentPlan(int exercisePlanId)
+        {
+            return DataService.GetExerciseTypesForCurrentPlan(exercisePlanId);
+        }
     }
 }
