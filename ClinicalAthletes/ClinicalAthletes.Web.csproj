@@ -54,6 +54,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -125,9 +131,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -202,20 +205,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\API\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\API\ExcelImportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\ExcelImportController.cs" />
     <Compile Include="Controllers\API\ExerciseAPIController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ExerciseViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SelectViewModel.cs" />
+    <Compile Include="Models\WeeklyViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Billing.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\ExcelGenerator.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -240,8 +250,18 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Admin\Import.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Dashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Admin\Web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="OutputTemplate\ClinicalAthlete Template.xlsx" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\excelImport.js" />
+    <Content Include="Areas\Admin\Scripts\excelImport.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -275,9 +295,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -298,7 +315,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_KendoUIRef.cshtml" />
     <Content Include="Views\Shared\_AnonLayout.cshtml" />
     <Content Include="Scripts\js\anon\bootstrap-selectpicker.js" />
@@ -307,14 +323,20 @@
     <Content Include="Scripts\js\anon\moment.min.js" />
     <Content Include="Scripts\js\anon\nouislider.min.js" />
     <Content Include="Scripts\js\anon\material.min.js" />
-    <Content Include="Views\Home\Plans.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_userDropdown.cshtml" />
-    <Content Include="Views\User\Dahsboard.cshtml" />
+    <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\User\XSelect.cshtml" />
+    <Content Include="Views\User\Web.config" />
+    <Content Include="Views\Shared\_exerciseSelection.cshtml" />
+    <Content Include="Views\User\Select.cshtml" />
+    <Content Include="Views\User\WeeklyPlan.cshtml" />
+    <Content Include="Views\User\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="ExcelFiles\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,57 @@
+﻿@model List<ClinicalAthletes.Entities.ExercisePlan>
+@using ClinicalAthletes.Entities;
+@{
+    ViewBag.Title = "Dahsboard";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="card" style="margin-top:10%;" id="window">
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Select exercise Plan</h4>
+    </div>
+    <div class="card-content">
+        <div class="row">
+
+            @{
+                int iCount = 0;
+                var offset = Model.Count.Equals(1) ? "col-md-offset-4" : Model.Count.Equals(2) ? "col-md-offset-3" : Model.Count.Equals(3) ? "col-md-offset-1" : "";
+            }
+            @foreach (ExercisePlan plan in Model)
+            {
+
+                iCount = iCount + 1;
+
+                <div class="col-md-3 @(iCount.Equals(1)? offset : "")">
+                    <div class="card card-pricing card-raised card-refine">
+                        <div class="card-content">
+                            <h6 class="category text-info">
+                                @plan.PlanName
+                            </h6>
+                            <h1 class="card-title"><small>$</small> @plan.Price</h1>
+                            <ul>
+                                @foreach (ExerciseType type in plan.ExerciseTypes)
+                                {
+                                    <li>@type.Name</li>
+                                }
+                            </ul>
+                            <a href="@Url.Action("Select","User",new {@id=plan.Id})" class="btn btn-danger anc">
+                                Select
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+<script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css" />
+<script>
+    $('.anc').click(function () {
+        kendo.ui.progress($("body"), true);
+    });
+</script>

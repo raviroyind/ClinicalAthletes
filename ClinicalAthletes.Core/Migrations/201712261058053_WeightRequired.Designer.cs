@@ -7,13 +7,13 @@ namespace ClinicalAthletes.Core.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class First : IMigrationMetadata
+    public sealed partial class WeightRequired : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(WeightRequired));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712202217038_First"; }
+            get { return "201712261058053_WeightRequired"; }
         }
         
         string IMigrationMetadata.Source

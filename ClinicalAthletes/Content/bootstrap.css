@@ -6814,3 +6814,14 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.buttonload {
+    border: none; /* Remove borders */
+    color: white; /* White text */
+}
+
+/* Add a right margin to each icon */
+.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+}

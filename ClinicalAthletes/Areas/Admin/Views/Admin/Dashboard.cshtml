@@ -1,0 +1,158 @@
+﻿@model List<ClinicalAthletes.Entities.ExercisePlan>
+@using ClinicalAthletes.Entities;
+@{
+    ViewBag.Title = "Plans";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Avialiable Plans</h4>
+    </div>
+    <div class="card-content">
+
+        @if (!Model.Any())
+    {
+        <div class="card">
+            <div class="card-content">
+ 
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <h3>No exercise plans found. Please <a href="@Url.Action("Import","Admin",new {Area="Admin" })"><strong>Import</strong></a> from excel.</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+}
+
+        @foreach (ExercisePlan plan in Model)
+    {
+        <div class="card">
+            <div class="card-content">
+                <p class="category">
+                    <h4>
+                        <strong class="text-gray">@plan.PlanName</strong>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h4>Active? </h4>
+                        </div>
+                        <div class="col-md-2" style="padding-top:10px;">
+                            <div class="togglebutton">
+                                <label>
+                                    @if (plan.IsActive)
+                                {
+                                    <input type="checkbox" id="@plan.Id" class="activeCheck" checked="checked"><span class="toggle"></span>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="@plan.Id" class="activeCheck"><span class="toggle"></span>
+                        }
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h4>Price </h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>@plan.Price.ToString("c")</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h4> Description: </h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>@plan.Description</h4>
+                        </div>
+                    </div>
+                    <hr />
+                    <h5>Exercises</h5>
+                </p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            @foreach (ExerciseType type in plan.ExerciseTypes)
+                        {
+                            string headerId = "heading" + type.Id.ToString();
+                            string collaspId = "collasp" + type.Id.ToString();
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="@headerId">
+                                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#@collaspId" aria-expanded="true" aria-controls="@collaspId">
+                                        <h4 class="panel-title">
+                                            @type.Name
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="@collaspId" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@headerId" aria-expanded="true" style="">
+                                    <div class="panel-body">
+                                        <ul>
+                                            @foreach (Exercise exercise in type.Exercises)
+                                        {
+                                            <li>@exercise.Name</li>
+                                    }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+}
+
+    </div>
+</div>
+
+@Html.Partial("_KendoUIRef")
+@section Scripts {
+    <script>
+        type = ['', 'info', 'success', 'warning', 'danger'];
+
+        $(document).ready(function () {
+            if (window.location.href.indexOf('success') > 0)
+                showNotification('top', 'right', 'Exercise plan imported successfully!', 'warning') 
+        });
+
+
+        $(".activeCheck").change(function (e) {
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: "/api/admin/dashboard/updateActive?id=" + e.target.id + "&isActive=" + $(this).is(":checked"),
+                dataType: 'json',
+                contentType: 'application/json'
+            });
+
+            showNotification('top', 'right', 'Exercise plan updated successfully!', 'success') 
+        }); 
+
+        function showNotification(from, align,msg,type) {
+            color = Math.floor((Math.random() * 4) + 1);
+            $.notify({
+                icon: "notifications",
+                message: msg
+            }, {
+                    type: type,
+                    timer: 4000,
+                    placement: {
+                        from: from,
+                        align: align
+                    }
+                });
+        }
+    </script>
+}
+
+

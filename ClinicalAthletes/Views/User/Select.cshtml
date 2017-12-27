@@ -1,0 +1,195 @@
+﻿@model ClinicalAthletes.Models.SelectViewModel
+@using ClinicalAthletes.Entities
+@{
+    ViewBag.Title = "Select";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="card" style="margin-top:15%;">
+
+    @Html.HiddenFor(m => m.ExercisePlanId)
+
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Select exercises</h4>
+        <p class="category">
+        </p>
+    </div>
+    <div class="card-content">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
+
+            <ul id="exerciseTypes" class="table-striped">
+                @foreach (ExerciseType type in Model.ExerciseTypeList)
+                {
+                    <li>@type.Name </li>
+                    <br />
+                }
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+
+            @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
+            {
+
+                @Html.Partial("_userDropdown", Model.ExerciseTypeList[i].Id)
+            }
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
+            <a href="@Url.Action("Dashboard","User")" class="btn btn-lg btn-white btn-raised">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <button onclick="submit()" href="#"
+                    class="btn btn-lg btn-primary submit btn-raised"
+                    data-loading-text="<i class='fa fa-spinner fa-spin '></i> Wait..." style="margin-left:10px;">
+                Next <i class="fa fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.ExerciseTypeIds)
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+ <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css" />
+<script>
+    type = ['', 'info', 'success', 'warning', 'danger'];
+    function submit() {
+        if (!validate())
+            return;
+
+
+        kendo.ui.progress($("body"), true);
+        var userExercisePlanSelectionsInsertedId = 0;
+        var userExercisePlanSelection = {
+            exercisePlanId: $("#ExercisePlanId").val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/api/exercise/saveUserExercisePlanSelection",
+            data: userExercisePlanSelection,
+            dataType: "Json",
+            success: function (data) {
+                userExercisePlanSelectionsInsertedId = data;
+                var userExerciseTypeSelectionList = [];
+                $('select').each(function () {
+                    var selectedOption = $(this).find('option:selected');
+
+                    var userExerciseTypeSelection = {
+                        exerciseId: selectedOption.val(),
+                        exerciseTypeId: $(this).attr("id").substr(3),
+                        name: selectedOption.text(),
+                        userExercisePlanSelectionId: data
+                    };
+                    userExerciseTypeSelectionList.push(userExerciseTypeSelection);
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/exercise/saveUserExerciseTypeSelection",
+                    data: JSON.stringify(userExerciseTypeSelectionList),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        window.location.href = '/User/WeeklyPlan?userExercisePlanSelectionId=' + userExercisePlanSelectionsInsertedId;
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+
+    function validate() {
+        var isValid = true;
+        $('select').each(function () {
+            var selectedOption = $(this).find('option:selected');
+            if (selectedOption.text() === 'Select')
+                isValid = false;
+        });
+
+        if (isValid === false) {
+            showNotification('top', 'right', 'Please select an option for all the exercises.', 'danger')
+        }
+
+        return isValid;
+    }
+
+    function showNotification(from, align, msg, type) {
+        color = Math.floor((Math.random() * 4) + 1);
+        $.notify({
+            icon: "<i class='fa fa-bell fa-2x' aria-hidden='true'></i>",
+            message: msg
+        }, {
+                type: type,
+                timer: 4000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+    }
+
+    function getExerciseTypeName(id) {
+        var returnVal = '';
+        $.ajax({
+            type: 'GET',
+            url: "/api/exercise/getExerciseTypeName?exerciseTypeId=" + id,
+            dataType: 'json',
+            success: function (data) {
+                returnVal = data;
+            }
+        });
+
+        return returnVal;
+    }
+
+    function getExerciseName(id) {
+        var returnVal = '';
+        $.ajax({
+            type: 'GET',
+            url: "/api/exercise/getExerciseName?exerciseId=" + id,
+            dataType: 'json',
+            success: function (data) {
+                returnVal = data;
+            }
+        });
+
+        return returnVal;
+    }
+
+    function getJson(text, typeId, value) {
+        var exercise = { id: value, exerciseTypeId: typeId, name: text };
+        return JSON.stringify(exercise);
+    }
+       
+    //$.ajax({
+    //    type: 'GET',
+    //    url: "/api/exercise/getExerciseTypes?exercisePlanId=" + $('#ExercisePlanId').val(),
+    //    dataType: 'json',
+    //    contentType: 'application/json',
+    //    success: function (data) {
+    //        $.each(data, function (index, element) {
+    //            $('#exerciseTypes').append($('<li>', {
+    //                text: element.Name
+    //            }), '<br/>');
+    //        });
+    //    }
+    //});
+</script>
+
+

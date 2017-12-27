@@ -1,29 +1,33 @@
 ﻿@model Int32
 
 @{
-    string ddlId ="ddl"+ Model.ToString();
+    string ddlId = "ddl" + Model.ToString();
 }
-
-<div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-4">
-        <select id="@ddlId" name="@ddlId" class="k-dropdown" style="width: 100%;"></select>
+<select id="@ddlId" name="@ddlId" class="k-dropdown" style="width: 100%;margin-bottom:12px;"></select>
+       
         <script>
             $("#@ddlId").kendoDropDownList({
-                dataTextField: "Name",
-                dataValueField: "Id",
+                dataTextField: "name",
+                dataValueField: "id",
                 optionLabel: 'Select',
                 dataSource: {
                     transport: {
                         read: {
                             dataType: "json",
-                            url: "/api/exercise/getExerciseTypes?exercisePlanId=" + $('#ExercisePlanId').val(),
+                            url: "/api/exercise/getExercises?exerciseTypeId=" + @Model.ToString(),
                         }
                     }
+                },
+                change: function (e) {
+                    if ($("#ExerciseTypeIds").val()==='')
+                        $("#ExerciseTypeIds").val(this.value());
+                    else
+                        $("#ExerciseTypeIds").val(($("#ExerciseTypeIds").val() + "," + this.value()));
                 }
             });
+
         </script>
-    </div>
-</div>
-<br />
+ 
+ 
 
 

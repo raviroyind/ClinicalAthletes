@@ -1,18 +1,18 @@
 ﻿using ClinicalAthelete.Services;
 using ClinicalAthletes.Entities;
-using ClinicalAthletes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ClinicalAthletes.Controllers
+namespace ClinicalAthletes.Areas.Admin.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
     {
-        public ActionResult Index()
+        // GET: Admin/Home
+        public ActionResult Import()
         {
             return View();
         }
@@ -22,19 +22,13 @@ namespace ClinicalAthletes.Controllers
         {
             exercisePlan.ExcelFilePath = Server.MapPath("~/ExcelFiles/" + exercisePlan.ExcelFilePath);
             DataService.Import(exercisePlan);
-            return View();
+            return RedirectToAction("Dashboard",new {id = "success" });
         }
-         
-        public ActionResult Plans()
+
+        public ActionResult Dashboard()
         {
             return View(DataService.GetExercisePlans());
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+         
     }
 }

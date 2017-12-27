@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ClinicalAthelete.Services;
+using ClinicalAthletes.Entities;
+using ClinicalAthletes.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,86 +15,45 @@ namespace ClinicalAthletes.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        public ActionResult Dahsboard()
+        public ActionResult Dashboard()
         {
-            return View();
-        }
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
+            return View(DataService.GetActiveExercisePlans());
         }
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Select(int id)
         {
-            return View();
+            SelectViewModel selectViewModel = DataService.GetSelectView(id);
+            return View(selectViewModel);
         }
 
-        // GET: User/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Select(SelectViewModel selectViewModel)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            List<ExerciseViewModel> list = DataService.GetExercises(25);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            string sJSONResponse = JsonConvert.SerializeObject(list);
+
+            selectViewModel.UserExercisePlanSelection = new UserExercisePlanSelection
             {
-                return View();
-            }
+                ExercisePlanId = selectViewModel.ExercisePlanId,
+                UserId = HttpContext.User.Identity.Name
+            };
+             
+            int userExercisePlanSelectionId =  DataService.InsertUserExercisePlanSelection(selectViewModel.UserExercisePlanSelection);
+
+            return WeeklyPlan(userExercisePlanSelectionId);
         }
 
-        // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult WeeklyPlan(int userExercisePlanSelectionId)
         {
+            WeeklyViewModel weeklyViewModel = new WeeklyViewModel(userExercisePlanSelectionId, User.Identity.Name);
+             
+            return View(weeklyViewModel);
+        }
+
+        public ActionResult Payment(int userExercisePlanSelectionId)
+        { 
             return View();
-        }
-
-        // POST: User/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: User/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

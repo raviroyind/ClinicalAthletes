@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicalAthletes", "ClinicalAthletes\ClinicalAthletes.csproj", "{FAD492BB-4C29-4811-A46E-4FD9FB1C5F5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicalAthletes.Web", "ClinicalAthletes\ClinicalAthletes.Web.csproj", "{FAD492BB-4C29-4811-A46E-4FD9FB1C5F5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicalAthletes.Core", "ClinicalAthletes.Core\ClinicalAthletes.Core.csproj", "{252A0FB4-CED2-439B-B5C8-666151CAFFA8}"
 EndProject

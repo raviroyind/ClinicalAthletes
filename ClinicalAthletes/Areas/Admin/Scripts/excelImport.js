@@ -2,7 +2,7 @@
     multiple: false,
     showFileList: true,
     async: {
-        saveUrl: "api/ExcelImport/upload",
+        saveUrl: "/api/admin/ExcelImport/upload",
         autoUpload: true,
     },
     localization: {
@@ -14,6 +14,7 @@
         allowedExtensions: [".xlsx"]
     },
     success: function (e) {
+        $(".btCancel").hide();
         var file0Uid = e.files[0].uid;
         var name = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
         $("#ExcelFilePath").val(name);

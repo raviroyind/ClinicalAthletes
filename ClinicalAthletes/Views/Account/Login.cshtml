@@ -4,32 +4,18 @@
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_AnonLayout.cshtml";
 }
-  
+
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="card card-signup">
 
                 <div class="header header-primary text-center">
-                    <h4 class="card-title">Login</h4>
-                    <div class="social-line">
-                        <a href="#pablo" class="btn btn-just-icon btn-simple">
-
-                        </a>
-                        <a href="#pablo" class="btn btn-just-icon btn-simple">
-
-                        </a>
-                        <a href="#pablo" class="btn btn-just-icon btn-simple">
-
-                        </a>
-                    </div>
+                    <h4 class="card-title"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</h4>
                 </div>
-
                 <div class="card-content">
-
-
                     <section id="loginForm">
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @id = "login-form" }))
                         {
                             @Html.AntiForgeryToken()
 
@@ -59,7 +45,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                     
+
                                 </span>
                                 <div class="form-group is-empty">
                                     @Html.CheckBoxFor(m => m.RememberMe)
@@ -69,35 +55,30 @@
 
                             <div class="footer text-center">
                                 <div class="form-group is-empty">
-                                    <input type="submit" value="Log in"  data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>" class="btn btn-default" />
+                                    <button class="btn btn-primary" id="btnSubmit" value="Log In" type="submit"
+                                            data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
+                                        Log In
+                                    </button>
                                 </div>
                             </div>
-
-                            <div class="input-group">
-                                <span class="input-group-addon">
-
-                                </span>
-                                <div class="form-group is-empty">
-                                    <p>
-                                        @Html.ActionLink("Register as a new user", "Register")
-                                    </p>
-
-                                    <p>
-                                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                                    </p>
-                                </div>
-                            </div>
-
                         }
                     </section>
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<br /><br /><br /><br /><br />
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("form#login-form").submit(function () {
+                if ($(this).valid()) {
+                    var $btn = $("#btnSubmit");
+                    $btn.button('loading');
+                }
+            });
+        });
+    </script>
 }

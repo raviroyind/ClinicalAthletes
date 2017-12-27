@@ -53,7 +53,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
     font-weight: 300;
     line-height: 1.5em;
 }
-
 .serif-font {
     font-family: "Roboto Slab", "Times New Roman", serif;
 }
@@ -2815,7 +2814,7 @@ select.form-control[multiple],
     height: 50px;
     line-height: 30px;
     color: inherit;
-    padding: 10px 15px;
+    padding: 0px 15px;
 }
 
 .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
@@ -2835,7 +2834,6 @@ select.form-control[multiple],
     padding-bottom: 15px;
     font-weight: 400;
     font-size: 12px;
-    text-transform: uppercase;
     border-radius: 3px;
 }
 
@@ -3972,6 +3970,17 @@ h2.title {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+.card {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin: 25px 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.87);
+    background: #fff;
+}
+
 .card .card-height-indicator {
     margin-top: 100%;
 }
@@ -4642,6 +4651,56 @@ h2.title {
     color: #f44336;
 }
 
+
+.card .card-header {
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    margin: -20px 15px 0;
+    border-radius: 3px;
+    padding: 15px;
+    background-color: #999999;
+}
+
+.card [data-background-color="purple"] {
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+
+.card [data-background-color="blue"] {
+    background: linear-gradient(60deg, #26c6da, #00acc1);
+    box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+}
+
+.card [data-background-color="green"] {
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+    box-shadow: 0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2);
+}
+
+.card [data-background-color="orange"] {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+}
+
+.card [data-background-color="red"] {
+    background: linear-gradient(60deg, #ef5350, #e53935);
+    box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
+}
+
+.card [data-background-color] {
+    color: #FFFFFF;
+}
+
+    .card [data-background-color] a {
+        color: #FFFFFF;
+    }
+
+.card .card-header .title {
+    color: #FFFFFF;
+}
+
+.card .title {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
 .rotating-card-container {
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
@@ -5213,10 +5272,10 @@ hr.on-light {
     margin-bottom: 5px;
 }
 
-.table-shopping .td-name {
+/*.table-shopping .td-name {
     font-weight: 400;
     font-size: 1.5em;
-}
+}*/
 
 .table-shopping .td-name small {
     color: #999999;
@@ -8968,7 +9027,7 @@ select.selectpicker {
 
 .login-page .footer .copyright,
 .login-page .footer a {
-    color: #686868;
+    color: #e4e4e4;
 }
 
 .signup-page .page-header {

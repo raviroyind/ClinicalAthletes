@@ -5,7 +5,7 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="dropdown-menu dropdown-with-icons">
         <li>
             <a href="#">@User.Identity.GetUserName().ToLower()</a>
         </li>

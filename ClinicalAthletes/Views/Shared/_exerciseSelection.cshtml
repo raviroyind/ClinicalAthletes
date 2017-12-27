@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
+        <ul id="exerciseTypes" class="table-striped"></ul>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+        @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
+    {
+        @Html.Partial("_userDropdown", i)
+         
+}
+
+    </div>
+</div>
+<br />
+
+<script>
+    $.ajax({
+        type: 'GET',
+        url: "/api/exercise/getExerciseTypes?exercisePlanId=" + $('#ExercisePlanId').val(),
+        dataType: 'json',
+        success: function (data) {
+            $.each(data, function (index, element) {
+                $('#exerciseTypes').append($('<li>', {
+                    text: element.Name
+                }),
+                    $.ajax({
+                        type: 'GET',
+                        url: "/api/exercise/getExercises?exerciseTypeId=" + element.id,
+                        dataType: 'json',
+                        success: function (data) {
+                            alert('second fiered');
+                        }
+                    }),
+
+                    '<br/>');
+            });
+        }
+    });
+</script>
+

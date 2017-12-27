@@ -1,0 +1,82 @@
+﻿@model ClinicalAthletes.Models.SelectViewModel 
+@{
+    ViewBag.Title = "Select";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+ 
+<div class="card">
+    @using (Html.BeginForm("Select", "User", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.HiddenFor(m => m.ExercisePlanId)
+        @Html.AntiForgeryToken()
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Select exercises</h4>
+        <p class="category">
+        </p>
+    </div>
+    <div class="card-content">
+       
+        @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
+        {
+            @Html.Partial("_userDropdown", i)
+        }
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
+            <button type="submit" class="btn btn-lg btn-primary" style="margin-left:10px;">Next</button>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m=>m.ExerciseTypeIds)
+}
+</div>
+<script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css" />
+<script>
+    $(".btn-primary").click(function () {
+        $(".btn-primary").addClass("loading");
+    });
+
+    function removeAllOptions(selectbox,id) {
+        var i;
+        for (i = selectbox.options.length - 1; i >= 0; i--) {
+            selectbox.remove(id);
+        }
+    }
+    function removeFromOthers(value,sender) {
+        
+        //$("select").each(function () {
+        //    removeAllOptions($(this), value);
+        //});
+
+        //var inputArray = $(".k-dropdown > input");
+        //console.log(inputArray);
+        //$("input").each(function () {
+        //    debugger;
+        //    var ddl = $(this).data("kendoDropDownList");
+        //    if (ddl) {
+                 
+        //        var oldData = cb.dataSource.data();
+
+        //        //Iterate over the dataItems and search for a value.  
+        //        //In this case,"cruiser"
+        //        for (var x = 0; x < oldData.length; x++) {
+        //            if (oldData[x].value == e.value()) {
+
+        //                //removes item
+        //                ddl.dataSource.remove(oldData[x]);
+
+        //                //selects first item
+        //                ddl.select(0);
+        //            }
+        //        }
+        //    }
+        //});
+        //console.log(this.element.attr("id"));
+    }
+</script>
+
+
