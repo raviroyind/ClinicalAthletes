@@ -130,26 +130,12 @@
     <script>
 
         $(document).ready(function () {
-            $('.nav li a').click(function (e) {
+            if (window.location.href.indexOf('success') > 0)
+                showNotification('top', 'right', 'Exercise plan imported successfully!', 'warning') 
 
-                $('.nav li.active').removeClass('active');
-                debugger;
-                var $parent = $(this).parent();
-                $parent.addClass('active');
-                switch ($(this).attr('id')) {
-                    case 'dash':
-                        e.preventDefault();
-                        window.location.href = '/Admin/Admin/Dashboard';
-                        break;
-                    case 'import':
-                       // e.preventDefault();
-                        window.location.href = '/Admin/Admin/Import';
-                        break;
-                    case 'users':
-                        window.location.href = '/Admin/Admin/Users';
-                        break;
-                }
-
+            $(".nav a").on("click", function () {
+                $(".nav").find(".active").removeClass("active");
+                $(this).parent().addClass("active");
             });
         });
     </script>

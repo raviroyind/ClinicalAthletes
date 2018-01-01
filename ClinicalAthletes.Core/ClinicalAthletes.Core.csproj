@@ -56,17 +56,17 @@
     <Compile Include="Entities\ExerciseType.cs" />
     <Compile Include="Entities\UserExerciseWeightSelection.cs" />
     <Compile Include="Entities\WeightSelection.cs" />
-    <Compile Include="Migrations\201712251955115_UserExerciseWeightSelection.cs" />
-    <Compile Include="Migrations\201712251955115_UserExerciseWeightSelection.Designer.cs">
-      <DependentUpon>201712251955115_UserExerciseWeightSelection.cs</DependentUpon>
+    <Compile Include="Migrations\201712311455495_2017.cs" />
+    <Compile Include="Migrations\201712311455495_2017.Designer.cs">
+      <DependentUpon>201712311455495_2017.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712261058053_WeightRequired.cs" />
-    <Compile Include="Migrations\201712261058053_WeightRequired.Designer.cs">
-      <DependentUpon>201712261058053_WeightRequired.cs</DependentUpon>
+    <Compile Include="Migrations\201712311505485_2017b.cs" />
+    <Compile Include="Migrations\201712311505485_2017b.Designer.cs">
+      <DependentUpon>201712311505485_2017b.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712261132108_attrib.cs" />
-    <Compile Include="Migrations\201712261132108_attrib.Designer.cs">
-      <DependentUpon>201712261132108_attrib.cs</DependentUpon>
+    <Compile Include="Migrations\201712312110005_2018-1.cs" />
+    <Compile Include="Migrations\201712312110005_2018-1.Designer.cs">
+      <DependentUpon>201712312110005_2018-1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,18 +81,18 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712251955115_UserExerciseWeightSelection.resx">
-      <DependentUpon>201712251955115_UserExerciseWeightSelection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712261058053_WeightRequired.resx">
-      <DependentUpon>201712261058053_WeightRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712261132108_attrib.resx">
-      <DependentUpon>201712261132108_attrib.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <EmbeddedResource Include="Migrations\201712311455495_2017.resx">
+      <DependentUpon>201712311455495_2017.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712311505485_2017b.resx">
+      <DependentUpon>201712311505485_2017b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712312110005_2018-1.resx">
+      <DependentUpon>201712312110005_2018-1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,6 +25,9 @@ namespace ClinicalAthletes.Core.Data
         { 
             modelBuilder.Entity<ExercisePlan>()
                .HasMany(e => e.ExerciseTypes);
+
+            modelBuilder.Entity<UserExerciseTypeSelection>()
+                .HasMany(e => e.UserExerciseWeightSelections);
         }
     }
 }

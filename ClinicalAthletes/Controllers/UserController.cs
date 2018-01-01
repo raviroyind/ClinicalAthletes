@@ -1,6 +1,7 @@
 ﻿using ClinicalAthelete.Services;
 using ClinicalAthletes.Entities;
 using ClinicalAthletes.Models;
+using ClinicalAthletes.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -52,7 +53,9 @@ namespace ClinicalAthletes.Controllers
         }
 
         public ActionResult Payment(int userExercisePlanSelectionId)
-        { 
+        {
+            ExcelGenerator.GenerateExcel(User.Identity.Name, userExercisePlanSelectionId);
+
             return View();
         }
     }

@@ -55,16 +55,19 @@ namespace ClinicalAthelete.Services
         }
 
         internal static UserExercisePlanSelection GetUserExercisePlanSelection(int userExercisePlanSelectionId, string userId)
-        {
+        { 
             try
-            {
+            { 
                 using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
-                {
-                    dbContext.Configuration.LazyLoadingEnabled = true;
-                    dbContext.Configuration.ProxyCreationEnabled = true;
-                    UserExercisePlanSelection userExercisePlanSelection= dbContext.UserExercisePlanSelections.Include(e => e.UserExerciseTypeSelections).SingleOrDefault(u => u.Id.Equals(userExercisePlanSelectionId));
+                { 
+                    UserExercisePlanSelection userExercisePlanSelection = dbContext.UserExercisePlanSelections.Include(e=>e.UserExerciseTypeSelections).SingleOrDefault(u => u.Id.Equals(userExercisePlanSelectionId) && u.UserId.Equals(userId));
+
+                    //List<UserExerciseTypeSelection> lst = new List<UserExerciseTypeSelection>();
+                    //lst.AddRange(userExercisePlanSelection.UserExerciseTypeSelections.Where(u => u.WeightRequired == true));
+                    //userExercisePlanSelection.UserExerciseTypeSelections = lst;
+
                     return userExercisePlanSelection;
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -205,6 +208,21 @@ namespace ClinicalAthelete.Services
             }
         }
 
+        internal static ExercisePlan GetExercisePlan(int exercisePlanId)
+        {
+            ExercisePlan exercisePlan;
+            try
+            {
+                dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes();
+                exercisePlan = dbContext.ExercisePlans.Find(exercisePlanId);
+                return exercisePlan;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         internal static List<ExercisePlan> GetExercisePlans()
         {
             List<ExercisePlan> listExercisePlan;
@@ -258,15 +276,19 @@ namespace ClinicalAthelete.Services
                 var colCnt = worksheet.Dimension.End.Column;
 
                 //1. Loop each column & get Exercise Type with its excercises
-                for(int i = 1; i <= colCnt; i++)
+                for(int i = 1; i <= colCnt; i++)//starting from two since 1 will have WeightRequired.
                 {
-                    listExerciseType.Add(new ExerciseType
+                    if (!string.IsNullOrEmpty(Convert.ToString(worksheet.Cells[2, i].Value)))
                     {
-                        ExercisePlanId= exercisePlan.Id,
-                        Name= (string)worksheet.Cells[1, i].Value,
-                        WeightRequired=true,
-                        EntryDate =DateTime.Now,
-                    });
+                        listExerciseType.Add(new ExerciseType
+                        {
+                            ExercisePlanId = exercisePlan.Id,
+                            Name = (string)worksheet.Cells[2, i].Value,//starting from two since 1 will have WeightRequired.
+                            WeightRequired = GetWeightRequired(Convert.ToString(worksheet.Cells[1, i].Value)),
+                            EntryDate = DateTime.Now,
+
+                        });
+                    }
                 }
 
                 using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
@@ -279,7 +301,7 @@ namespace ClinicalAthelete.Services
                 for (int c=1;c<= colCnt; c++)
                 {
                     List<Exercise> list = new List<Exercise>();
-                    for (int r = 2; r <= rowCnt; r++)
+                    for (int r = 3; r <= rowCnt; r++)
                     {
                         string cellVal = (string)worksheet.Cells[r,c].Value;
 
@@ -307,6 +329,22 @@ namespace ClinicalAthelete.Services
             return listExerciseType;
         }
 
-       
+        private static bool GetWeightRequired(string value)
+        {
+            bool isWeightRequired = true;
+            try
+            {
+                if (string.IsNullOrEmpty(value))
+                    isWeightRequired = true;
+                else if (Convert.ToString(value).Trim().ToLower() == "nw")
+                    isWeightRequired = false;
+            }
+            catch
+            {
+                //do something.
+            }
+
+            return isWeightRequired;
+        }
     }
 }

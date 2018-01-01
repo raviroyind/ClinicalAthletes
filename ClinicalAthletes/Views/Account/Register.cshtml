@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_AnonLayout.cshtml";
 }
 
-<div class="col-md-10 col-md-offset-1" style="margin-top:6%;">
-    <div class="card card-signup">
+<div class="col-md-10 col-md-offset-1">
+    <div class="card card-signup topspace">
         <h2 class="card-title text-center">
             <div class="icon icon-primary">
                 <i class="material-icons">Register</i>
@@ -44,47 +44,56 @@
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form", @id = "register-form", role = "form", }))
                 {
                     @Html.AntiForgeryToken()
-                    <div class="card-content">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-envelope"></i>
-                            </span>
-                            <div class="form-group is-empty">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email..." })
-                                <span class="material-input"></span>
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-key"></i>
-                            </span>
-                            <div class="form-group is-empty">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password..." })
-                                <span class="material-input"></span>
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-key"></i>
-                            </span>
-                            <div class="form-group is-empty">
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Retype Password..." })
-                                <span class="material-input"></span>
-                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="optionsCheckboxes" checked="">
-                                I agree to the <a href="#something">terms and conditions</a>.
-                            </label>
+                <div class="card-content">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <div class="form-group is-empty">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email..." })
+                            <span class="material-input"></span>
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <div class="form-group is-empty">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password..." })
+                            <span class="material-input"></span>
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <div class="form-group is-empty">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Retype Password..." })
+                            <span class="material-input"></span>
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <div class="form-group is-empty">
+                            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", @placeholder = "Location..." })
+                            <span class="material-input"></span>
+                            @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="optionsCheckboxes" checked="">
+                            I agree to the <a href="#something">terms and conditions</a>.
+                        </label>
+                    </div>
+                </div>
                     <button class="btn btn-primary btn-round" id="btnSubmit" value="Get Started" type="submit"
                             data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
                         Get Started
@@ -110,3 +119,4 @@
         });
     </script>
 }
+ 

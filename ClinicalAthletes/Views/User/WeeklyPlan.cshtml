@@ -12,298 +12,332 @@
     </div>
     <div class="card-content">
         @{
-            int index = 1;
-            string displayAttr = "style=display:block;";
+        int index = 1;
+        string displayAttr = "style=display:block;";
         }
         @foreach (UserExerciseTypeSelection type in Model.UserExerciseTypeSelectionList)
+    {
+        if (!index.Equals(1))
         {
-            if (!index.Equals(1))
-            {
-                displayAttr = "style=display:none;";
-            }
-            <div id="@type.Id" @displayAttr>
-                <div class="col-md-12">
-                    <h3 class="title text-danger text-center"> @type.ExerciseName.ToUpper()</h3>
-                    <strong class="text-center">(@type.ExerciseTypeName)</strong>
-                </div>
-                <div class="col-md-12">
-                    <div class="table-responsive @type.Id">
-                        <table class="table table-shopping">
-                            <thead>
-                                <tr>
-                                    <th>
-                                    </th>
-                                    <th>Week 1</th>
-                                    <th>Week 2</th>
-                                    <th>Week 3</th>
-                                    <th>Week 4</th>
-                                    <th>Week 5</th>
-                                    <th>Week 6</th>
-                                    <th>Week 7</th>
-                                    <th>Week 8</th>
-                                    <th>Week 9</th>
-                                    <th>Week 10</th>
-                                    <th>Week 11</th>
-                                    <th>Week 12</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="td-name">
-                                            <h5>Day 1 (Weight)</h5><br />
-                                            Set 1 <input type="text" onkeyup="copyToRow(this,'D1S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 2 <input type="text" onkeyup="copyToRow(this,'D1S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 3 <input type="text" onkeyup="copyToRow(this,'D1S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D1S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D1S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="td-name">
-                                            <h5>Day 2 (Weight)</h5><br />
-                                            Set 1 <input type="text" onkeyup="copyToRow(this,'D2S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 2 <input type="text" onkeyup="copyToRow(this,'D2S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 3 <input type="text" onkeyup="copyToRow(this,'D2S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D2S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D2S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="td-name">
-                                            <h5>Day 3 (Weight)</h5><br />
-                                            Set 1 <input type="text" onkeyup="copyToRow(this,'D3S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 2 <input type="text" onkeyup="copyToRow(this,'D3S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                            Set 3 <input type="text" onkeyup="copyToRow(this,'D3S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                    <td>
-                                        <br /> <br /><br /><br />
-                                        <input type="text" class="D3S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                        <input type="text" class="D3S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
-                            <a href="#" rel="@type.Id" class="btn btn-lg btn-primary" onclick="SaveAndContinue(@type.Id)">Next Exercise <i class="fa fa-arrow-right"></i></a>
-                        </div>
+            displayAttr = "style=display:none;";
+        }
+        <div id="@type.Id" @displayAttr>
+            <div class="col-md-12">
+                <h3 class="title text-danger text-center exname"> @type.ExerciseName.ToUpper()</h3>
+                <strong class="text-center">(@type.ExerciseTypeName)</strong>
+                @{
+
+        if (!type.WeightRequired)
+        {
+            <script>
+                function clearAllValues() {
+                    var fields = $('.table-shopping').find(":text");
+                    console.log(fields);
+                    for (var i = 0; i <= fields.length - 1; i++) {
+                        fields[i].value = '0';
+                        $(fields[i]).attr("disabled", "disabled");
+                    }
+                }
+                clearAllValues();
+            </script>
+            <strong class="pull-right text-danger"><i class="fa fa-ban fa-2x text-danger"></i> <i class="fa fa-question-circle-o pull-right"></i> Weight Not applicable</strong>
+}
+else
+{
+            <script>
+                function clearAllValues() {
+                    var fields = $('.table-shopping').find(":text");
+                    console.log(fields);
+                    for (var i = 0; i <= fields.length - 1; i++) {
+                        $(fields[i]).removeAttr("disabled");
+                        fields[i].value = '0';
+                    }
+                }
+                clearAllValues();
+            </script>
+}
+
+                }
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive @type.Id" >
+                    <table class="table table-shopping">
+                        <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>Week 1</th>
+                                <th>Week 2</th>
+                                <th>Week 3</th>
+                                <th>Week 4</th>
+                                <th>Week 5</th>
+                                <th>Week 6</th>
+                                <th>Week 7</th>
+                                <th>Week 8</th>
+                                <th>Week 9</th>
+                                <th>Week 10</th>
+                                <th>Week 11</th>
+                                <th>Week 12</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="td-name">
+                                        <h5>Day 1 (Weight)</h5><br />
+                                        Set 1 <input type="text"  onkeyup="copyToRow(this,'D1S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 2 <input type="text"  onkeyup="copyToRow(this,'D1S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 3 <input type="text"  onkeyup="copyToRow(this,'D1S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                    </div>
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D1S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D1S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-name">
+                                        <h5>Day 2 (Weight)</h5><br />
+                                        Set 1 <input type="text"  onkeyup="copyToRow(this,'D2S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 2 <input type="text"  onkeyup="copyToRow(this,'D2S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 3 <input type="text"  onkeyup="copyToRow(this,'D2S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                    </div>
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D2S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D2S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-name">
+                                        <h5>Day 3 (Weight)</h5><br />
+                                        Set 1 <input type="text"  onkeyup="copyToRow(this,'D3S1');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 2 <input type="text"  onkeyup="copyToRow(this,'D3S2');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                        Set 3 <input type="text"  onkeyup="copyToRow(this,'D3S3');" class="master" style="width:50px;text-align:center;font-size:1.1em;" value="0" /> copy >><br /><hr />
+                                    </div>
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W1" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W2" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W3" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W4" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W5" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W6" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W7" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W8" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W9" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W10" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W11" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                                <td>
+                                    <br /> <br /><br /><br />
+                                    <input type="text"  class="D3S1W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S2W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                    <input type="text"  class="D3S3W12" style="width:50px;text-align:center;font-size:1.1em;" value="0" /><br /><hr />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
+                        <a href="#" rel="@type.Id" class="btn btn-lg btn-primary btSubmit" onclick="SaveAndContinue(@type.Id)">Next Exercise <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            index++;
-        }
+        </div>
+    index++;
+}
+ 
     </div>
 </div>
 <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
@@ -313,13 +347,33 @@
 <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css" />
 <script>
     function SaveAndContinue(id) {
-        var count = parseInt($("#completedCount").val()) + 1;
-        
+        var count = parseInt($("#completedCount").val());
+        debugger;
         $("#completedCount").val(count);
 
         var divtoShow = id + 1;
         var target = $("#" + divtoShow);
-      
+        //if (target === undefined) {
+
+        //    var cnt = id + 1+1;
+        //    do {
+        //        var divtoShow = icnt + 1;
+        //        target = $("#" + divtoShow);
+        //        if (target !== undefined)
+        //            return;
+
+        //    } while(cnt===5);
+
+        //}
+
+
+        var countOne = Number.parseInt($("#completedCount").val());
+        var countTwo = Number.parseInt($("#UserExerciseTypeSelectionList_Count").val());
+        
+        if ((countOne + 1) == countTwo) {
+            $(".btSubmit").html('Save &amp; Continue <i class="fa fa-arrow-right"></i>')
+        }
+         
         if ($("#completedCount").val() === $("#UserExerciseTypeSelectionList_Count").val()) {
             kendo.ui.progress($("body"), true);
             return window.location.href = '/User/Payment?userExercisePlanSelectionId=' +@Model.UserExercisePlanSelection.Id;
@@ -374,6 +428,10 @@
                 }
             });
         });
+        var countIncrement = Number.parseInt($("#completedCount").val());
+        countIncrement++;
+        $("#completedCount").val(countIncrement);
+        $('.exname').addClass('notification');
     }
 
     function copyToRow(e, c) {
@@ -424,5 +482,7 @@
             });
         }
     });
+
+   
 </script>
 

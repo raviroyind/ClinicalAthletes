@@ -7,13 +7,13 @@ namespace ClinicalAthletes.Core.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class attrib : IMigrationMetadata
+    public sealed partial class _20181 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(attrib));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_20181));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712261132108_attrib"; }
+            get { return "201712312110005_2018-1"; }
         }
         
         string IMigrationMetadata.Source

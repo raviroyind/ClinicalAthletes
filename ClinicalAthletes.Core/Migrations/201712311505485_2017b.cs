@@ -3,16 +3,16 @@ namespace ClinicalAthletes.Core.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class WeightRequired : DbMigration
+    public partial class _2017b : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.ExerciseTypes", "WeightRequired", c => c.Boolean(nullable: false));
+            AddColumn("dbo.UserExerciseTypeSelections", "WeightRequired", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.ExerciseTypes", "WeightRequired");
+            DropColumn("dbo.UserExerciseTypeSelections", "WeightRequired");
         }
     }
 }

@@ -29,8 +29,8 @@
 
             @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
             {
-
                 @Html.Partial("_userDropdown", Model.ExerciseTypeList[i].Id)
+                @Html.HiddenFor(m=>m.ExerciseTypeList[i].WeightRequired)
             }
 
         </div>
@@ -80,8 +80,10 @@
             data: userExercisePlanSelection,
             dataType: "Json",
             success: function (data) {
+                //save each exercise type selection.
                 userExercisePlanSelectionsInsertedId = data;
                 var userExerciseTypeSelectionList = [];
+                var currentIndex = 0;
                 $('select').each(function () {
                     var selectedOption = $(this).find('option:selected');
 
@@ -89,9 +91,11 @@
                         exerciseId: selectedOption.val(),
                         exerciseTypeId: $(this).attr("id").substr(3),
                         name: selectedOption.text(),
+                        weightRequired: $("#ExerciseTypeList_" + currentIndex + "__WeightRequired").val(),
                         userExercisePlanSelectionId: data
                     };
                     userExerciseTypeSelectionList.push(userExerciseTypeSelection);
+                    currentIndex++;
                 });
 
                 $.ajax({
@@ -123,7 +127,7 @@
         });
 
         if (isValid === false) {
-            showNotification('top', 'right', 'Please select an option for all the exercises.', 'danger')
+            showNotification('top', 'right', 'Please select an exercise for all the categories.', 'danger')
         }
 
         return isValid;
