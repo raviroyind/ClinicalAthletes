@@ -1,0 +1,76 @@
+﻿@model String
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 topspace">
+            <div class="card" id="window">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Payment</h4>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-warning">
+                                <div class="container-fluid">
+                                    <div class="alert-icon">
+
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"></span>
+                                    </button>
+                                    <h4>Your exercise plan is ready. Please proceed to payment in order to download/ email/ print.</h4>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-shopping table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-name">Exercise Plan</th>
+                                            <th class="td-total">Amount to be Paid</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="td-name">12 weeks sample</td>
+                                            <td class="td-total">$19.99</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-4">
+                            @using (Html.BeginForm("Payment", "User", new { planId = Model }, FormMethod.Get,
+                            new { enctype = "multipart/form-data", role = "form", @id = "buy-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-primary btn-lg" id="btnSubmit" type="submit" 
+                                 data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
+                                    <i class="fa fa-paypal fa-3x"></i> Proceed to Payment
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("form#buy-form").submit(function () {
+                if ($(this).valid()) {
+                    var $btn = $("#btnSubmit");
+                    $btn.button('loading');
+                }
+            });
+        });
+    </script>
+}

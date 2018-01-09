@@ -15,8 +15,6 @@
     <!--  Material Dashboard CSS    -->
     <link href="~/Content/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-   
-     
     <!--     Fonts and icons     -->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -31,21 +29,21 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a id="dash" href="@Url.Action("Dashboard","Admin",new { Area="Admin"})">
+                    <li id="dash" class="active">
+                        <a href="@Url.Action("Dashboard","Admin",new { Area="Admin"})">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a id="import" href="@Url.Action("Import","Admin",new { Area="Admin"})">
-                            <i class="material-icons">person</i>
-                            <p>Exercises</p>
+                    <li  id="import" >
+                        <a href="@Url.Action("Import","Admin",new { Area="Admin"})">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            <p>Import</p>
                         </a>
                     </li>
-                    <li>
-                        <a id="users" href="@Url.Action("Users","Admin",new { Area="Admin"})">
-                            <i class="material-icons">content_paste</i>
+                    <li id="users" >
+                        <a href="@Url.Action("Users","Admin",new { Area="Admin"})">
+                            <i class="fa fa-users" aria-hidden="true"></i>
                             <p>Users</p>
                         </a>
                     </li>
@@ -68,28 +66,33 @@
                     <div class="collapse navbar-collapse">
                         @if (Request.IsAuthenticated)
                         {
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle icon-primary" data-toggle="dropdown">
-                                        <i class="material-icons text-primary">person</i> <strong class="text-primary">Welcome:</strong> @User.Identity.GetUserName().ToLower()
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-with-icons">
-
-                                        @using (Html.BeginForm("LogOff", "Account", new { Area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <li class="">
-                                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Log off</a>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                            <i class="fa fa-user-circle-o text-primary"></i>
+                                            <span class="">
+                                                <strong class="text-info">Welcome:</strong> @User.Identity.GetUserName().ToLower()
+                                                <b class="caret"></b>
+                                            </span>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                    <i class="fa fa-sign-out"></i> Log off
+                                                    <div class="ripple-container">
+                                                        @using (Html.BeginForm("LogOff", "Account", new { Area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                        }
+                                                    </div>
+                                                </a> 
                                             </li>
-
-                                        }
-
-                                    </ul>
-                                </li>
-
-
-                            </ul>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         }
                     </div>
                 </div>
@@ -128,15 +131,15 @@
     <script src="~/Scripts/js/bootstrap-notify.js"></script>
     @RenderSection("scripts", required: false)
     <script>
-
         $(document).ready(function () {
             if (window.location.href.indexOf('success') > 0)
-                showNotification('top', 'right', 'Exercise plan imported successfully!', 'warning') 
+                showNotification('top', 'right', 'Exercise plan imported successfully!', 'warning')
 
-            $(".nav a").on("click", function () {
-                $(".nav").find(".active").removeClass("active");
-                $(this).parent().addClass("active");
-            });
+            if (window.location.href.indexOf('Import') > 0) {
+                $('#import').addClass("active");
+                $('#dash').removeClass("active");
+                $('#users').removeClass("active");
+            } 
         });
     </script>
 </body>

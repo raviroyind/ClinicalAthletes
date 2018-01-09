@@ -211,12 +211,14 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\ExerciseAPIController.cs" />
+    <Compile Include="Controllers\API\UserApiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\ExerciseViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Services\Billing.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\ExcelGenerator.cs" />
+    <Compile Include="Services\PayPalConfiguration.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +259,9 @@
     <Content Include="Areas\Admin\Web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="OutputTemplate\ClinicalAthlete Template.xlsx" />
+    <Content Include="ExcelFiles\ImportTemplate.xlsx" />
+    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_KendoUIRef.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -326,17 +332,18 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_userDropdown.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
-    <Content Include="Views\User\XSelect.cshtml" />
     <Content Include="Views\User\Web.config" />
     <Content Include="Views\Shared\_exerciseSelection.cshtml" />
     <Content Include="Views\User\Select.cshtml" />
+    <Content Include="Views\User\Buy.cshtml" />
     <Content Include="Views\User\WeeklyPlan.cshtml" />
-    <Content Include="Views\User\Payment.cshtml" />
+    <Content Include="Views\User\Account.cshtml" />
+    <Content Include="Views\User\PurchaseSuccess.cshtml" />
+    <Content Include="Views\User\FailureView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="ExcelFiles\" />
     <Folder Include="UserExcels\" />
   </ItemGroup>
   <ItemGroup>

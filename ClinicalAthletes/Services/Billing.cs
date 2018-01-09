@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace ClinicalAthletes.Services
@@ -11,18 +12,30 @@ namespace ClinicalAthletes.Services
     {
         public static Payment CreatePayment(string baseUrl, string intent)
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             // ### Api Context
             // Pass in a `APIContext` object to authenticate 
             // the call and to send a unique request id 
             // (that ensures idempotency). The SDK generates
             // a request id if you do not pass one explicitly. 
-            var apiContext = new APIContext("ARR829Ty8eUjKi503wdOmCvHMn8CfnNQ_37Ipb_LJAVqxmoI77HqjgjXNGY_rgx_q-9OE-SKrk53XXGL");
+            var apiContext = PayPalConfiguration.GetAPIContext();
 
             // Payment Resource
             var payment = new Payment()
             {
                 intent = intent,    // `sale` or `authorize`
-                payer = new Payer() { payment_method = "paypal" },
+                payer = new Payer() { payment_method = "paypal",payer_info=new PayerInfo { billing_address=new Address
+                {
+                    line1= "1 Main St",
+                    line2 = "SAN JOSE, CA 95131",
+                    city= "SAN JOSE",
+                    state= "CA",
+                    postal_code= "95131",
+                    country_code="US"
+                },
+                first_name="ravi",
+                last_name="roy"
+                } },
                 transactions = GetTransactionsList(),
                 redirect_urls = GetReturnUrls(baseUrl, intent)
             };
@@ -38,7 +51,7 @@ namespace ClinicalAthletes.Services
             // A transaction defines the contract of a payment
             // what is the payment for and who is fulfilling it. 
             var transactionList = new List<Transaction>();
-
+             
             // The Payment creation API requires a list of Transaction; 
             // add the created Transaction to a List
             transactionList.Add(new Transaction()
@@ -48,47 +61,33 @@ namespace ClinicalAthletes.Services
                 amount = new Amount()
                 {
                     currency = "USD",
-                    total = "100.00",       // Total must be equal to sum of shipping, tax and subtotal.
+                    total = "3.00",       // Total must be equal to sum of shipping, tax and subtotal.
                     details = new Details() // Details: Let's you specify details of a payment amount.
                     {
-                        tax = "15",
-                        shipping = "10",
-                        subtotal = "75"
+                        tax = "1",
+                        shipping = "1",
+                        subtotal = "1"
                     }
-                },
-                item_list = new ItemList()
-                {
-                    items = new List<Item>()
-            {
-                new Item()
-                {
-                    name = "Item Name",
-                    currency = "USD",
-                    price = "15",
-                    quantity = "5",
-                    sku = "sku"
-                }
-            }
-                }
+                } 
             });
             return transactionList;
         }
 
         private static string GetRandomInvoiceNumber()
         {
-            throw new NotImplementedException();
+            return new Random().Next(999999).ToString();
         }
 
         private static RedirectUrls GetReturnUrls(string baseUrl, string intent)
         {
-            var returnUrl = intent == "sale" ? "/Home/PaymentSuccessful" : "/Home/AuthorizeSuccessful";
+            var returnUrl = intent == "sale" ? "/User/PaymentSuccessful" : "/User/PaymentFail";
 
             // Redirect URLS
             // These URLs will determine how the user is redirected from PayPal 
             // once they have either approved or canceled the payment.
             return new RedirectUrls()
             {
-                cancel_url = baseUrl + "/Home/PaymentCancelled",
+                cancel_url = baseUrl + "/User/PaymentCancelled",
                 return_url = baseUrl + returnUrl
             };
         }
@@ -100,8 +99,8 @@ namespace ClinicalAthletes.Services
             // the call and to send a unique request id 
             // (that ensures idempotency). The SDK generates
             // a request id if you do not pass one explicitly. 
-            var apiContext = new APIContext("ARR829Ty8eUjKi503wdOmCvHMn8CfnNQ_37Ipb_LJAVqxmoI77HqjgjXNGY_rgx_q-9OE-SKrk53XXGL");
-
+            var apiContext = PayPalConfiguration.GetAPIContext();
+             
             var paymentExecution = new PaymentExecution() { payer_id = payerId };
             var payment = new Payment() { id = paymentId };
 

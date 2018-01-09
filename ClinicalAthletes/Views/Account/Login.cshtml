@@ -37,7 +37,7 @@
                                     <i class="fa fa-key"></i>
                                 </span>
                                 <div class="form-group is-empty">
-                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password..." })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password..." })
                                     <span class="material-input"></span>
                                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 </div>
@@ -48,8 +48,15 @@
 
                                 </span>
                                 <div class="form-group is-empty">
-                                    @Html.CheckBoxFor(m => m.RememberMe)
-                                    @Html.LabelFor(m => m.RememberMe)
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+                                        </label>
+                                    </div>
+
+                                    
+                                   
                                 </div>
                             </div>
 

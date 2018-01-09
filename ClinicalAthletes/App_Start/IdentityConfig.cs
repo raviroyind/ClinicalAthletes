@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ClinicalAthletes.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace ClinicalAthletes
 {
@@ -18,9 +20,39 @@ namespace ClinicalAthletes
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+
+            return Task.Run(()=>  SendEmail(message));
+             
         }
+
+        public void SendEmail(IdentityMessage message)
+        {
+            var fromAddress = new MailAddress("royravi161@gmail.com", "Clinical Athletes");
+            const string fromPassword = "coolgool";
+
+            var client = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false
+            };
+
+            var to = new MailAddress(message.Destination);
+
+            var mail = new MailMessage(fromAddress, to)
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true,
+            };
+ 
+            client.Send(mail);
+             
+        }
+
     }
 
     public class SmsService : IIdentityMessageService

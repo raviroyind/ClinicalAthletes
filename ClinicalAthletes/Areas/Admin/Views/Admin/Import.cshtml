@@ -16,70 +16,73 @@
             <div class="col-md-6">
                 <input type="file" name="excel" id="excel" />
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-6">
-                <a href="@Url.Action("Dashboard","Admin",new {Area="Admin"})" class="btn btn-default btCancel">
-                    Cancel
-                </a>
+              <i class="fa fa-info-circle fa-1x text-info"></i>  <a href="~/ExcelFiles/ImportTemplate.xlsx" target="_blank" class="text-primary"><strong>Click here</strong></a> to download sample import excel format.
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            @using (Html.BeginForm("Import", "Admin", new { Area = "Admin" }, FormMethod.Post, new { role = "form", @id = "import-form" }))
-            {
-                <div class="importFrm col-md-12" style="display:none;">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action("Dashboard","Admin",new {Area="Admin"})" class="btn btn-default btCancel">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                @using (Html.BeginForm("Import", "Admin", new { Area = "Admin" }, FormMethod.Post, new { role = "form", @id = "import-form" }))
+        {
+            <div class="importFrm col-md-12" style="display:none;">
 
-                    <h4 class="text-primary"> Enter Plan details</h4>
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="col-sm-4">
-                        <div class="form-group label-floating">
-                            <h5>Plan Name</h5>
-                            @Html.TextBoxFor(m => m.PlanName, new { @class = "form-control" })
-                            <span class="material-input"></span>
-                            @Html.ValidationMessageFor(m => m.PlanName, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(m => m.ExcelFilePath)
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group label-floating">
-                            <h5>Price</h5>
-                            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
-                            <span class="material-input"></span>
-                            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group label-floating">
-                            <h5>Description <span class="text-muted">(optional)</span></h5>
-                            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="togglebutton">
-                            <label class="header-3">
-                                Active <input type="checkbox" checked="checked" id="chkIsActive"><span class="toggle"></span>
-                            </label>
-                            @Html.HiddenFor(m => m.IsActive)
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-lg-offset-5">
-                            <a href="@Url.Action("Dashboard","Admin",new {Area="Admin"})" class="btn btn-default">
-                                Cancel
-                            </a>
-                            <button class="btn btn-primary" id="btnSubmit" value="Log In" type="submit"
-                                    data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
-                                Import
-                            </button>
-                        </div>
+                <h4 class="text-primary"> Enter Plan details</h4>
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-sm-4">
+                    <div class="form-group label-floating">
+                        <h5>Plan Name</h5>
+                        @Html.TextBoxFor(m => m.PlanName, new { @class = "form-control" })
+                        <span class="material-input"></span>
+                        @Html.ValidationMessageFor(m => m.PlanName, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(m => m.ExcelFilePath)
                     </div>
                 </div>
-            }
-        </div>
+                <div class="col-sm-4">
+                    <div class="form-group label-floating">
+                        <h5>Price</h5>
+                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                        <span class="material-input"></span>
+                        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group label-floating">
+                        <h5>Description <span class="text-muted">(optional)</span></h5>
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="togglebutton">
+                        <label class="header-3">
+                            Active <input type="checkbox" checked="checked" id="chkIsActive"><span class="toggle"></span>
+                        </label>
+                        @Html.HiddenFor(m => m.IsActive)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-lg-offset-5">
+                        <a href="@Url.Action("Dashboard","Admin",new {Area="Admin"})" class="btn btn-default">
+                            Cancel
+                        </a>
+                        <button class="btn btn-primary" id="btnSubmit" value="Log In" type="submit"
+                                data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
+                            Import
+                        </button>
+                    </div>
+                </div>
+            </div>
+}
+            </div>
 
-    </div>
+        </div>
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -99,7 +102,7 @@
                     $btn.button('loading');
                 }
             });
-        });
+        }); 
     </script>
 }
 @Html.Partial("_KendoUIRef")

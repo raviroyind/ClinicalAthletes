@@ -1,0 +1,52 @@
+﻿@model String
+@{
+    ViewBag.Title = "FailureView";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="wrapper">
+    <div class="card topspace" style="margin-top:10%;" id="window">
+        <div class="card-header" data-background-color="purple">
+            <h4 class="title">Error!</h4>
+        </div>
+        <div class="card-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h5 class="text-danger">
+                        There was a problem completing the purchase.<br />
+                        Please try again.
+                    </h5>
+                </div>
+            </div>
+            <ul class="list-unstyled">
+                <li>
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+                            @using (Html.BeginForm("Payment", "User", FormMethod.Post, new { planId = Model.ToString(), role = "form",@id= "payment-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-info btn-lg" id="btnSubmit" type="submit">
+                                    <i class="fa fa-paypal fa-3x"></i> Retry Payment
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("form#payment-form").submit(function () {
+                if ($(this).valid()) {
+                    var $btn = $("#btnSubmit");
+                    $btn.button('loading');
+                }
+            });
+        });
+    </script>
+}

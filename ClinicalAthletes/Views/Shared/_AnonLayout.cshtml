@@ -10,108 +10,114 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/material-kit.css" rel="stylesheet" />
 </head>
-<body class="login-page" data-gr-c-s-loaded="true">
-    <div class="alert alert-info" style="display:none;">
-        <div class="container">
-            <div class="alert-icon">
-                <i class="fa fa-info-circle fa-2x"></i>
-            </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="fa fa-times"></i></span>
-            </button>
-            <b>SUCCESS:</b> Registration successful,  please login below.
-        </div>
-    </div>
 
-    <nav class="navbar navbar-default navbar-absolute navbar-fixed">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="~/Content/logo.png" height="60" width="190" style="padding-bottom:10px;" />
-                </a>
-            </div>
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="@Url.Action("Register", "Account")">
-                            <i class="fa fa-user-plus text-primary"></i>Register
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Login", "Account")">
-                            <i class="fa fa-sign-in text-primary"></i>Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("ForgotPassword", "Account")">
-                            <i class="fa fa-recycle text-primary"></i>Forgot Password?
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-
-    <div class="page-header" style="background-size: cover; background-position: top center;">
-        @RenderBody()
-        <div class="clearfix"></div>
-        <footer class="footer footer-black">
+<body class="login-page" data-gr-c-s-loaded="true" style="height:100%;">
+   
+        <div class="alert alert-info" style="display:none;">
             <div class="container">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
+                <div class="alert-icon">
+                    <i class="fa fa-info-circle fa-2x"></i>
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+                <b>SUCCESS:</b> Registration successful,  please login below.
+            </div>
+        </div>
 
+        <nav class="navbar navbar-default navbar-absolute navbar-fixed">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/logo.png" height="60" width="190" style="padding-bottom:10px;" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Register", "Account")">
+                                <i class="fa fa-user-plus text-primary"></i>Register
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                About Us
+                            <a href="@Url.Action("Login", "Account")">
+                                <i class="fa fa-sign-in text-primary"></i>Login
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                Blog
+                            <a href="@Url.Action("ForgotPassword", "Account")">
+                                <i class="fa fa-recycle text-primary"></i>Forgot Password?
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </li>
+
                     </ul>
-                </nav>
-                <div class="copyright pull-right">
-                    ©
-                    <script>document.write(new Date().getFullYear())</script> <a href="#" target="_blank">Clinical Athlete</a>
+
                 </div>
             </div>
-        </footer>
-    </div>
-    <script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/js/anon/material.min.js"></script>
-    <script src="~/Scripts/js/anon/bootstrap-selectpicker.js"></script>
-    <script src="~/Scripts/js/anon/material-kit.js"></script>
-    <script src="~/Scripts/js/anon/bootstrap-tagsinput.js"></script>
+        </nav>
 
-    @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            if (window.location.href.indexOf('Success') > 0)
-                $(".alert-info").show();
-        });
-    </script>
+        <div class="page-header" style="background-size: cover; background-position: top center;">
+            <div class="wrapper">
+                @RenderBody()
+                </div>
+                <div class="clearfix"></div>
+                <footer class="footer footer-black">
+                    <div class="container">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright pull-right">
+                            ©
+                            <script>document.write(new Date().getFullYear())</script> <a href="#" target="_blank">Clinical Athlete</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+            <script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
+            <script src="~/Scripts/js/bootstrap.min.js"></script>
+            <script src="~/Scripts/js/anon/material.min.js"></script>
+            <script src="~/Scripts/js/anon/bootstrap-selectpicker.js"></script>
+            <script src="~/Scripts/js/anon/material-kit.js"></script>
+            <script src="~/Scripts/js/anon/bootstrap-tagsinput.js"></script>
+
+            @RenderSection("scripts", required: false)
+            <script>
+                $(document).ready(function () {
+                    if (window.location.href.indexOf('Success') > 0)
+                        $(".alert-info").show();
+                });
+            </script>
 </body>
+ 
 </html>
  

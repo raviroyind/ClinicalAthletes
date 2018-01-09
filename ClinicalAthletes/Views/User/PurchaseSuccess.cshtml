@@ -1,0 +1,125 @@
+﻿@model String
+@{
+    ViewBag.Title = "PurchaseSuccess";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="wrapper">
+    <div class="card topspace" id="window">
+        <div class="card-header" data-background-color="green">
+            <h4 class="title">Payment Successful!</h4>
+        </div>
+        <div class="card-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h5 class="text-success">
+                        Please use form below to download/ email your exercise plan.
+                    </h5>
+
+                </div>
+            </div>
+            <ul class="list-unstyled">
+                <li>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <a href="~/UserExcels/@Model.ToString()" target="_blank" class="text-primary">
+                            <i class="fa fa-download"></i>
+                            Click here</a> to download the exercise plan.<br />
+                            <sub>(in order to print open the downloaded excel sheet and press ctrl + p)</sub>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 col-md-offset-3">
+                        <hr />
+                    </div>
+                </li> 
+                <li>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    OR use the form below to email exercise plan.
+                                    <br />
+                                    <sub>(enter comman separated emails to send to multiple recipients.)</sub>
+                                </div>
+                                <div class="panel-body">
+                                    <section id="loginForm">
+                                        <div class="input-group">
+                                            <div class="form-group is-empty">
+                                                <i class="fa fa-envelope text-primary"></i>
+                                                <input class="form-control" name="toEmail" id="toEmail" type="email" placeholder="Email" />
+                                                <span class="material-input"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-group is-empty">
+
+                                                <textarea class="form-control" rows="5" name="EmailMsg" id="EmailMsg" type="text" placeholder="Enter a personalised message here..."></textarea>
+                                                <span class="material-input"></span>
+                                               <a href="@Url.Action("Dashboard","User")" class="btn btn-default">Back</a>
+                                                <button class="btn btn-primary" id="btnSend" value="Send"
+                                                        data-loading-text="<i class='fa fa-lg fa-spin fa-circle-o-notch'></i>">
+                                                    <i class="fa fa-send"></i> Send
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <input type="hidden" value="@Model.ToString()" id="fileName" />
+    </div>
+</div>
+<script>
+    type = ['', 'info', 'success', 'warning', 'danger'];
+    $("#btnSend").click(function () {
+
+        var $btn = $("#btnSend");
+        $btn.button('loading');
+
+        $.ajax({
+            type: 'POST',
+            url: "/api/exercise/sendEmail?toAddress=" + $('#toEmail').val() + "&msg=Please find attached exercise plan from Clinical Athletes&subject=Clinical Athletes" + $('#fileName').val()+"&attachment=" + $('#fileName').val(),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                $("#btnSend").button('reset');
+                $('#toEmail').val('');
+                showNotification('top', 'right', 'Exercise plan emailed successfully!', 'success')
+            },
+            error: function (data) {
+           
+                if (data.status !== 200) {
+                    $("#btnSend").button('reset');
+                    showNotification('top', 'right', 'Error!!! Email not sent!', 'danger')
+                } else {
+                    $("#btnSend").button('reset');
+                    $('#toEmail').val('');
+                    showNotification('top', 'right', 'Exercise plan emailed successfully!', 'warning')
+                }
+            }
+        });
+    });
+
+    function showNotification(from, align, msg, type) {
+        color = Math.floor((Math.random() * 4) + 1);
+        $.notify({
+            icon: "<i class='fa fa-bell-o'></i>",
+            message: msg
+        }, {
+                type: type,
+                timer: 4000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+    }
+</script>

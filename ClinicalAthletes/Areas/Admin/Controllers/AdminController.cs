@@ -29,6 +29,11 @@ namespace ClinicalAthletes.Areas.Admin.Controllers
         {
             return View(DataService.GetExercisePlans());
         }
+
+        public ActionResult Users()
+        {
+            return View();
+        }
          
     }
 }

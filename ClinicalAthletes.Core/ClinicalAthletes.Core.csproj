@@ -54,6 +54,7 @@
     <Compile Include="Entities\Exercise.cs" />
     <Compile Include="Entities\ExercisePlan.cs" />
     <Compile Include="Entities\ExerciseType.cs" />
+    <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\UserExerciseWeightSelection.cs" />
     <Compile Include="Entities\WeightSelection.cs" />
     <Compile Include="Migrations\201712311455495_2017.cs" />
@@ -67,6 +68,22 @@
     <Compile Include="Migrations\201712312110005_2018-1.cs" />
     <Compile Include="Migrations\201712312110005_2018-1.Designer.cs">
       <DependentUpon>201712312110005_2018-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081627125_purchase.cs" />
+    <Compile Include="Migrations\201801081627125_purchase.Designer.cs">
+      <DependentUpon>201801081627125_purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081635297_purchase2.cs" />
+    <Compile Include="Migrations\201801081635297_purchase2.Designer.cs">
+      <DependentUpon>201801081635297_purchase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081642362_purchase3.cs" />
+    <Compile Include="Migrations\201801081642362_purchase3.Designer.cs">
+      <DependentUpon>201801081642362_purchase3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081649182_purchase4.cs" />
+    <Compile Include="Migrations\201801081649182_purchase4.Designer.cs">
+      <DependentUpon>201801081649182_purchase4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +109,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712312110005_2018-1.resx">
       <DependentUpon>201712312110005_2018-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081627125_purchase.resx">
+      <DependentUpon>201801081627125_purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081635297_purchase2.resx">
+      <DependentUpon>201801081635297_purchase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081642362_purchase3.resx">
+      <DependentUpon>201801081642362_purchase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081649182_purchase4.resx">
+      <DependentUpon>201801081649182_purchase4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

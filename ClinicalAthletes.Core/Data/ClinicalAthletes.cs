@@ -20,7 +20,9 @@ namespace ClinicalAthletes.Core.Data
         public virtual DbSet<UserExercisePlanSelection> UserExercisePlanSelections { get; set; }
         public virtual DbSet<UserExerciseTypeSelection> UserExerciseTypeSelections { get; set; }
         public virtual DbSet<UserExerciseWeightSelection> UserExerciseWeightSelections { get; set; }
+        public virtual DbSet<Purchase> Purchases { get; set; }
         
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         { 
             modelBuilder.Entity<ExercisePlan>()

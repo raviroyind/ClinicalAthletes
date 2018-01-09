@@ -37,7 +37,7 @@ namespace ClinicalAthletes.Models
         {
             return new ApplicationDbContext();
         }
- 
-       
+
+        //public System.Data.Entity.DbSet<ClinicalAthletes.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

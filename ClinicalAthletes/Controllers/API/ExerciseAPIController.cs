@@ -1,8 +1,14 @@
 ﻿using ClinicalAthelete.Services;
 using ClinicalAthletes.Entities;
 using ClinicalAthletes.Models;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
+using System.Web;
 using System.Web.Http;
  
 namespace ClinicalAthletes.Controllers.API
@@ -67,6 +73,48 @@ namespace ClinicalAthletes.Controllers.API
             {
                 dbContext.UserExerciseWeightSelections.AddRange(userExerciseWeightSelectionList);
                 dbContext.SaveChanges();
+            }
+        }
+
+        [HttpPost, Route("sendEmail")]
+        public HttpResponseMessage SendEmail(string toAddress,string msg,string subject, string attachment = null)
+        { 
+            if (!string.IsNullOrEmpty(attachment))
+            {
+                attachment = HttpContext.Current.Server.MapPath("~/UserExcels/" + attachment);
+            }
+            var fromAddress = new MailAddress(ConfigurationManager.AppSettings["fromEmailId"], ConfigurationManager.AppSettings["SiteId"]);
+              
+
+            try
+            {
+                var smtp = new SmtpClient
+                {
+                    Host = ConfigurationManager.AppSettings["Host"],
+                    Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]),
+                    EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, ConfigurationManager.AppSettings["fromPassword"])
+                };
+                using (var message = new MailMessage(fromAddress.Address, toAddress)
+                {
+                    Subject = subject,
+                    Body = msg
+                })
+                {
+                    if (attachment != null)
+                        message.Attachments.Add(new Attachment(attachment));
+
+                    smtp.Send(message);
+                    return new HttpResponseMessage(HttpStatusCode.OK);
+                }
+            }
+            catch(Exception ex)
+            {
+                var err = ex.Message;
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
             }
         }
     }

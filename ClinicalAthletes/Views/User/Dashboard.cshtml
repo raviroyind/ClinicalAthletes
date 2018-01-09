@@ -4,7 +4,7 @@
     ViewBag.Title = "Dahsboard";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<div class="card" style="margin-top:10%;" id="window">
+<div class="card topspace" id="window">
     <div class="card-header" data-background-color="purple">
         <h4 class="title">Select exercise Plan</h4>
     </div>
@@ -23,10 +23,11 @@
                 <div class="col-md-3 @(iCount.Equals(1)? offset : "")">
                     <div class="card card-pricing card-raised card-refine">
                         <div class="card-content">
-                            <h6 class="category text-info">
+                            
+                            <h5 class="category text-info">
                                 @plan.PlanName
-                            </h6>
-                            <h1 class="card-title"><small>$</small> @plan.Price</h1>
+                            </h5>
+                            <h2 class="card-title"><small>$</small> @plan.Price</h2>
                             <ul>
                                 @foreach (ExerciseType type in plan.ExerciseTypes)
                                 {

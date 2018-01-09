@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 using ClinicalAthletes.Models;
+using System.Data.SqlClient;
 
 namespace ClinicalAthelete.Services
 {
@@ -136,6 +137,22 @@ namespace ClinicalAthelete.Services
                 {
                    ExerciseType exerciseType = dbContext.ExerciseTypes.SingleOrDefault(e => e.Id.Equals(exerciseTypeId));
                    return exerciseType.Name;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal static UserExerciseTypeSelection GetUserExerciseTypeSelectionById(int userExerciseTypeSelectionId)
+        {
+            try
+            {
+                using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
+                {
+                    UserExerciseTypeSelection userExerciseTypeSelection = dbContext.UserExerciseTypeSelections.SingleOrDefault(e => e.Id.Equals(userExerciseTypeSelectionId));
+                    return userExerciseTypeSelection;
                 }
             }
             catch (Exception ex)
@@ -345,6 +362,49 @@ namespace ClinicalAthelete.Services
             }
 
             return isWeightRequired;
+        }
+
+
+        internal static List<UserExerciseWeightSelection> GetUserExerciseWeightSelections(string userExerciseTypeSelectionIds,string weekNumber, string dayNumber)
+        {
+            using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
+            {
+               var param = new SqlParameter[]
+                {
+                     new SqlParameter("@UserExerciseTypeSelectionId", userExerciseTypeSelectionIds),
+                     new SqlParameter("@WeekNumber", weekNumber),
+                     new SqlParameter("@DayNumber", dayNumber)
+                };
+                    
+                var lst = dbContext.UserExerciseWeightSelections.SqlQuery("GetUserExerciseWeightSelections @UserExerciseTypeSelectionId,@WeekNumber,@DayNumber", param).ToList();
+                return lst;
+            }
+            
+        }
+
+        internal static List<UserExerciseWeightSelection> GetUserExerciseWeightSelectionsWeekly(string userExerciseTypeSelectionIds, string weekNumber)
+        {
+            using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
+            {
+                var param = new SqlParameter[]
+                 {
+                     new SqlParameter("@UserExerciseTypeSelectionId", userExerciseTypeSelectionIds),
+                     new SqlParameter("@WeekNumber", weekNumber)
+                 };
+
+                var lst = dbContext.UserExerciseWeightSelections.SqlQuery("GetUserExerciseWeightSelectionsWeekly @UserExerciseTypeSelectionId,@WeekNumber", param).ToList();
+                return lst;
+            }
+
+        }
+
+        internal static void InsertPurchases(Purchase purchase)
+        {
+            using (dbContext = new ClinicalAthletes.Core.Data.ClinicalAthletes())
+            {
+                dbContext.Purchases.Add(purchase);
+                dbContext.SaveChanges();
+            }
         }
     }
 }

@@ -8879,6 +8879,13 @@ select.selectpicker {
 
 .landing-page .wrapper {
     background: #CCCCCC;
+    height: 100vh;
+}
+
+.wrapper {
+    position: relative;
+    top: 0;
+    min-height: 90vh;
 }
 
 .landing-page .section-contacts {
@@ -9659,41 +9666,41 @@ select.selectpicker {
 @media (min-width:320px) {
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
     .topspace {
-        margin-top: 25%;
+        margin-top: 27%;
     }
 }
 
 @media (min-width:480px) {
     /* smartphones, Android phones, landscape iPhone */
     .topspace {
-        margin-top: 25%;
+        margin-top: 27%;
     }
 }
 
 @media (min-width:600px) {
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     .topspace {
-        margin-top: 25%;
+        margin-top: 27%;
     }
 }
 
 @media (min-width:801px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */
     .topspace {
-        margin-top: 6%;
+        margin-top: 10%;
     }
 }
 
 @media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */
     .topspace {
-        margin-top: 6%;
+        margin-top: 10%;
     }
 }
 
 @media (min-width:1281px) {
     /* hi-res laptops and desktops */
     .topspace {
-        margin-top: 6%;
+        margin-top: 10%;
     }
 }

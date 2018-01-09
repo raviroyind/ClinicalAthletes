@@ -5,57 +5,55 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<div class="card" style="margin-top:15%;">
+<div class="wrapper">
+    <div class="card topspace">
 
-    @Html.HiddenFor(m => m.ExercisePlanId)
+        @Html.HiddenFor(m => m.ExercisePlanId)
 
-    <div class="card-header" data-background-color="purple">
-        <h4 class="title">Select exercises</h4>
-        <p class="category">
-        </p>
-    </div>
-    <div class="card-content">
-        <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
+        <div class="card-header" data-background-color="purple">
+            <h4 class="title">Select exercises</h4>
+            <p class="category">
+            </p>
+        </div>
+        <div class="card-content">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
 
-            <ul id="exerciseTypes" class="table-striped">
-                @foreach (ExerciseType type in Model.ExerciseTypeList)
+                <ul id="exerciseTypes" class="table-striped">
+                    @foreach (ExerciseType type in Model.ExerciseTypeList)
+                    {
+                        <li>@type.Name </li>
+                        <br />
+                    }
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+
+                @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
                 {
-                    <li>@type.Name </li>
-                    <br />
+                    @Html.Partial("_userDropdown", Model.ExerciseTypeList[i].Id)
+                    @Html.HiddenFor(m => m.ExerciseTypeList[i].WeightRequired)
                 }
-            </ul>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
 
-            @for (int i = 0; i <= Model.ExerciseTypeCount - 1; i++)
-            {
-                @Html.Partial("_userDropdown", Model.ExerciseTypeList[i].Id)
-                @Html.HiddenFor(m=>m.ExerciseTypeList[i].WeightRequired)
-            }
+            </div>
 
         </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
+                <a href="@Url.Action("Dashboard","User")" class="btn btn-lg btn-white btn-raised">
+                    <i class="fa fa-arrow-left"></i> Back
+                </a>
+                <button onclick="submit()" href="#"
+                        class="btn btn-lg btn-primary submit btn-raised"
+                        data-loading-text="<i class='fa fa-spinner fa-spin '></i> Wait..." style="margin-left:10px;">
+                    Next <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
 
+        @Html.HiddenFor(m => m.ExerciseTypeIds)
     </div>
-    <div class="row">
-        <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-5">
-            <a href="@Url.Action("Dashboard","User")" class="btn btn-lg btn-white btn-raised">
-                <i class="fa fa-arrow-left"></i> Back
-            </a>
-            <button onclick="submit()" href="#"
-                    class="btn btn-lg btn-primary submit btn-raised"
-                    data-loading-text="<i class='fa fa-spinner fa-spin '></i> Wait..." style="margin-left:10px;">
-                Next <i class="fa fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-
-    @Html.HiddenFor(m => m.ExerciseTypeIds)
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
+ 
  <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
 <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css" />
 <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css" />
@@ -180,20 +178,7 @@
         var exercise = { id: value, exerciseTypeId: typeId, name: text };
         return JSON.stringify(exercise);
     }
-       
-    //$.ajax({
-    //    type: 'GET',
-    //    url: "/api/exercise/getExerciseTypes?exercisePlanId=" + $('#ExercisePlanId').val(),
-    //    dataType: 'json',
-    //    contentType: 'application/json',
-    //    success: function (data) {
-    //        $.each(data, function (index, element) {
-    //            $('#exerciseTypes').append($('<li>', {
-    //                text: element.Name
-    //            }), '<br/>');
-    //        });
-    //    }
-    //});
+        
 </script>
 
 
